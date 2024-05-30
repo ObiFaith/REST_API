@@ -6,7 +6,7 @@
     <title>Country Detail | REST_API</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body class="country">
+<body>
     <header>
         <div class="max-container flex justify-between">
             <h3>Where in the world?</h3>
@@ -21,34 +21,10 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
                 Back</a>
         </div>
-        <div class="flex">
-            <img class="col" src="https://flagcdn.com/w320/af.png" alt="Afghanistan Flag">
-            <div class="col">
-                <h2>Afghanistan</h2>
-                <div class="flex items-start justify-between country-info">
-                    <div>
-                        <p><span>Native Name:</span> افغانستان</p>                            
-                        <p><span>Population:</span> 40218234</p>
-                        <p><span>Region:</span> Asia</p>
-                        <p><span>Sub Region:</span> Southern Asia</p>
-                        <p><span>Capital:</span> Kabul</p>
-                    </div>
-                    <div>
-                        <p><span>Top Level Domain:</span> .af</p>                            
-                        <p><span>Currencies:</span> Afghan afghani</p>
-                        <p><span>Language:</span> Pashto, Uzbek, Turkmen</p>
-                    </div>
-                </div>
-                <div class="flex border">
-                    <h4>Border Countries: </h4>
-                    <a href="#" class="btn">France</a>
-                    <a href="#" class="btn">Germany</a>
-                    <a href="#" class="btn">Netherlands</a>
-                </div>
-            </div>
-        </div>
+        <div class="no-country col text-center">Loading...</div>
+        <div class="country flex"></div>
     </main>
     
-    <script src="./script/index.js"></script>
+    <script src="./script/country.js"></script>
 </body>
 </html>
