@@ -8,46 +8,73 @@ const getCountryDetails = async () => {
     const params = new URLSearchParams(window.location.search);
     const countryName = params.get('name').toLowerCase();
 
-    if (countryName) {
+    if (countryName) {        
         try {
-            const countryData = await fetchData(`https://restcountries.com/v3.1/name/${countryName}`);
-            console.log(countryData)
-            displayCountryDetails(countryData[0]);
+            const countryData = await fetchData(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
+            await displayCountryDetails(countryData[0]);
         } catch (error) {
             console.error('Error fetching country data:', error);
-            document.querySelector('.country').innerHTML = '<p>Unable to fetch country details. Please refresh page</p>';
+            document.querySelector('.country').innerHTML = '<p>Unable to fetch country details.</p>';
         }
-        document.querySelector('.no-country').remove()
     } else {
         document.querySelector('.country').innerHTML = '<p>No country specified.</p>';
     }
+
+    document.querySelector('.no-country').remove()
 };
 
-const displayCountryDetails = country => {
+const fetchBorderCountryNames = async (borders) => {
+    if (!borders || borders.length === 0) return 'No border countries';
+
+    const borderCountries = await fetchData(`https://restcountries.com/v3.1/alpha?codes=${borders.join(',')}`);
+    return borderCountries.map(borderCountry => `<a href="./country.html?name=${borderCountry.name.common}" class="btn">${borderCountry.name.common}</a>`).join('');
+};
+
+const displayCountryDetails = async country => {
+    const borderCountriesHTML = await fetchBorderCountryNames(country.borders);
+
     const countryDetailsHTML = `
         <img class="col" src="${country.flags.png}" alt="${country.name.common} Flag">
         <div class="col">
             <h2>${country.name.common}</h2>
             <div class="flex items-start justify-between country-info">
                 <div>
-                    <p><span>Native Name:</span> ${country.name.nativeName[Object.keys(country.name.nativeName)[0]].common}</p>
-                    <p><span>Population:</span> ${country.population}</p>
+                    <p><span>Native Name:</span> ${country.name.nativeName ? country.name.nativeName[Object.keys(country.name.nativeName)[0]].common : country.name.common}</p>                            
+                    <p><span>Population:</span> ${country.population.toLocaleString()}</p>
                     <p><span>Region:</span> ${country.region}</p>
                     <p><span>Sub Region:</span> ${country.subregion}</p>
                     <p><span>Capital:</span> ${country.capital}</p>
                 </div>
                 <div>
-                    <p><span>Top Level Domain:</span> ${country.tld}</p>                            
+                    <p><span>Top Level Domain:</span> ${country.tld.join(', ')}</p>                            
                     <p><span>Currencies:</span> ${Object.values(country.currencies).map(currency => currency.name).join(', ')}</p>
                     <p><span>Languages:</span> ${Object.values(country.languages).join(', ')}</p>
                 </div>
             </div>
             <div class="flex border">
                 <h4>Border Countries: </h4>
-                ${country.borders ? country.borders.map(border => `<a href="./country.html?name=${border}" class="btn">${border}</a>`).join('') : 'No border countries'}
+                ${borderCountriesHTML}
             </div>
         </div>`;
     document.querySelector('.country').innerHTML = countryDetailsHTML;
 };
 
 getCountryDetails();
+
+const toggleDarkMode = () => {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+    // Save the current theme in localStorage
+    const isDarkMode = body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+};
+
+// Function to load the saved theme
+const loadTheme = () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme && savedTheme === 'dark') document.body.classList.add('dark-mode');
+    else document.body.classList.remove('dark-mode');
+};
+
+window.addEventListener('DOMContentLoaded', loadTheme);
+document.getElementById('theme-toggle').addEventListener('click', toggleDarkMode);

@@ -23,13 +23,13 @@ header{padding-block: 2rem; border-radius: 0 !important;}
 form, .select{position: relative;}
 .col, input{width: 100%; }
 input{text-indent: 1rem; padding: 1rem 2rem; }
-header, input, select, .country-card{background-color: var(--clr-white); box-shadow: 0 0 3px rgba(0, 0, 0, .2); border-radius: .5rem;}
+header, input, select, .country-card, .country img{background-color: var(--clr-white); box-shadow: 0 0 3px rgba(0, 0, 0, .2); border-radius: .5rem;}
 select{ margin-block: 2rem; padding: 1rem; padding-right: 5rem; appearance: none; -webkit-appearance: none; -moz-appearance: none;}
 input::placeholder{font-weight: 400;}
 .search-filter{padding-top: 2rem;}
 input, input::placeholder{color: var(--clr-grey-400)}
 button svg{fill: var(--clr-grey-400)}
-button, .chevron-down, option{cursor: pointer;}
+button, .chevron-down, option, #theme-toggle{cursor: pointer;}
 .chevron-down{pointer-events: none; position: absolute; top: 3rem; left: 158px;}
 button{background: transparent; position: absolute; left: 20px; top: 1rem;}
 .countries{display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; justify-items: center;}
@@ -52,7 +52,18 @@ button{background: transparent; position: absolute; left: 20px; top: 1rem;}
     .chevron-down{top: 1rem}
     .search-filter{display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;}
 }
+@media screen and (min-width: 1472px) {.max-container{max-width: 85%;}}
 
-@media screen and (min-width: 1472px) {
-    .max-container{max-width: 85%;}
+/* Dark Mode Styles */
+body.dark-mode .svg{color: var(--clr-white) !important;}
+body.dark-mode {background-color: var(--clr-blue-600);}
+body.dark-mode .btn {background-color: var(--clr-blue-400);}
+body.dark-mode .pagination div.active {background-color: var(--clr-blue-400);}
+body.dark-mode input, body.dark-mode input::placeholder {color: var(--clr-grey-400);}
+body.dark-mode, body.dark-mode a, body.dark-mode option, body.dark-mode .btn, body.dark-mode .pagination div.active, body.dark-mode input{color: var(--clr-white);}
+body.dark-mode header, body.dark-mode input, body.dark-mode select, body.dark-mode .country-card, body.dark-mode .country img {
+    background-color: var(--clr-blue-400);
+    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+    color: var(--clr-white);
+    border-radius: .5rem;
 }
