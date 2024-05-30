@@ -53,7 +53,7 @@ const displayCountryDetails = async country => {
             </div>
             <div class="flex border">
                 <h4>Border Countries: </h4>
-                ${borderCountriesHTML}
+                <div class="flex flex-wrap">${borderCountriesHTML}<div>
             </div>
         </div>`;
     document.querySelector('.country').innerHTML = countryDetailsHTML;

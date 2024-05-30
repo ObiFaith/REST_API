@@ -42,7 +42,8 @@ button{background: transparent; position: absolute; left: 20px; top: 1rem;}
 .country-info{padding: 1rem 0 2rem;}
 .country{gap: 1.5rem;}
 .country img{margin-bottom: 1.5rem;}
-.pagination{justify-content: center; gap: 1rem; flex-wrap: wrap;}
+.pagination{justify-content: center; gap: 1rem;}
+.flex-wrap{flex-wrap: wrap;}
 .pagination div{padding: .5rem 1rem; border-radius: 50%; font-size: 16px; color: var(--clr-blue-400); cursor: pointer;}
 .pagination div.active{color: var(--clr-blue-800); box-shadow: 0 0 5px rgba(0, 0, 0, .2); background-color: var(--clr-white);}
 
