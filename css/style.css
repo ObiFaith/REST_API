@@ -55,7 +55,7 @@ button{background: transparent; position: absolute; left: 20px; top: 1rem;}
 @media screen and (min-width: 1472px) {.max-container{max-width: 85%;}}
 
 /* Dark Mode Styles */
-body.dark-mode .svg{color: var(--clr-white) !important;}
+body.dark-mode svg{fill: var(--clr-white)}
 body.dark-mode {background-color: var(--clr-blue-600);}
 body.dark-mode .btn {background-color: var(--clr-blue-400);}
 body.dark-mode .pagination div.active {background-color: var(--clr-blue-400);}
