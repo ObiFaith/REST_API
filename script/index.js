@@ -11,11 +11,11 @@ const CountryElement = country => `
 
 const updateContent = (countries, search, region, pageNo, countriesPerPage) => {
     // Filter countries based on search query and region
-    const filteredCountries = countries.filter(country => 
+    const filteredCountries = countries.filter(country =>
         country.name.common.toLowerCase().includes(search) &&
         (region === '' || country.region === region)
     );
-    
+
     const startIndex = (pageNo - 1) * countriesPerPage;
     const endIndex = startIndex + countriesPerPage;
     const currentCountries = filteredCountries.slice(startIndex, endIndex);
@@ -32,7 +32,7 @@ const updateContent = (countries, search, region, pageNo, countriesPerPage) => {
 const displayContent = async (pageNo = 1, countriesPerPage = 27) => {
     try {
         const res = await fetch('https://restcountries.com/v3.1/all');
-        if (!res.ok) throw new Error(`Unable to fetch ${url}`);        
+        if (!res.ok) throw new Error(`Unable to fetch ${url}`);
 
         let search = '';
         let selectedRegion = '';
@@ -45,7 +45,7 @@ const displayContent = async (pageNo = 1, countriesPerPage = 27) => {
         updateContent(countries, search, selectedRegion, pageNo, countriesPerPage);
 
         form.addEventListener('submit', async e => {
-            e.preventDefault(); 
+            e.preventDefault();
             search = searchInput.value.toLowerCase().trim();
             updateContent(countries, search, selectedRegion, pageNo, countriesPerPage);
         });

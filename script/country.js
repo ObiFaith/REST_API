@@ -8,7 +8,7 @@ const getCountryDetails = async () => {
     const params = new URLSearchParams(window.location.search);
     const countryName = params.get('name').toLowerCase();
 
-    if (countryName) {        
+    if (countryName) {
         try {
             const countryData = await fetchData(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
             await displayCountryDetails(countryData[0]);
@@ -46,7 +46,7 @@ const displayCountryDetails = async country => {
                     <p><span>Capital:</span> ${country.capital}</p>
                 </div>
                 <div>
-                    <p><span>Top Level Domain:</span> ${country.tld.join(', ')}</p>                            
+                    <p><span>Top Level Domain:</span> ${country.tld.join(', ')}</p>
                     <p><span>Currencies:</span> ${Object.values(country.currencies).map(currency => currency.name).join(', ')}</p>
                     <p><span>Languages:</span> ${Object.values(country.languages).join(', ')}</p>
                 </div>
